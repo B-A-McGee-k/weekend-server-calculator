@@ -14,6 +14,18 @@ let calculations = []
 
 // GET /calculations
 
+function getCalculations(event) {
+  console.log("In getCalculations function...");
+  axios
+    .get("/calculations")
+    .then((response) => {
+      console.log(
+        "got data from calculations"
+      );
+      
+    })
+}
+
 // POST /calculations
 
 

@@ -9,21 +9,24 @@
   <body>
     <h1>Server-Side Calculator</h1>
 
-    <form data-testid="calculator">
-      <input data-testid="numOne" placeholder="First Number">
-      <button>+</button>
-      <button>-</button>
-      <button>*</button>
-      <button>/</button>
-      <input data-testid="numTwo" placeholder="Second Number">
-      <button>=</button>
-      <button>C</button>
+    <form data-testid="calculator" action="/server.js">
+      <input data-testid="numOne" placeholder="First Number" type="number" name="numOne">
+      <label><input type="radio" id="plus" name="operation">+</label>
+      <label><input type="radio" id="minus" name="operation">-</label>
+      <label><input type="radio" id="multiply" name="operation">*</label>
+      <label><input type="radio" id="divide" name="operation">/</label>
+      <input data-testid="numTwo" placeholder="Second Number" type="number" name="numTwo">
+      <!-- There's got to be a way to disable = until there's all inputs, how though? -->
+      
+      <button type="submit" value="Submit">=</button>
+      <button type="reset">C</button>
     </form>
 
     <section data-testid="recentResult">
       <!-- The most recent calculation result goes here. -->
     </section>
-
+    <br>
+<h3>Past calculations:</h3>
     <section data-testid="resultHistory">
       <!-- The list of calculation results goes here. -->
     </section>
