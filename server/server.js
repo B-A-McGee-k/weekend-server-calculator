@@ -5,29 +5,65 @@ let PORT = process.env.PORT || 5001;
 app.use(express.json());
 app.use(express.static('server/public'));
 
+function calculator(event) {
+  calculations.forEach(calculation => {
+    if (calculation.operator == '+') {
+      calculation.result = calculation.numOne + calculation.numTwo
+    } else if (calculation.operator == '-') {
+      calculation.result = calculation.numOne - calculation.numTwo
+    } else if (calculation.operator == '*') {
+      calculation.result = calculation.numOne * calculation.numTwo
+    } else if (calculation.operator == '/') {
+      calculation.result = calculation.numOne / calculation.numTwo
+    } else {
+      calculation.result = "Operation was not selected, select one to perform calculation."
+    }
+    console.log("A solution of ", calculation.result, " was found.")
+  });
+}
+
 // Global variable that will contain all of the
 // calculation objects:
-let calculations = []
+let calculations = [
+  {
+  numOne: 11,
+  numTwo: 7,
+  operator: '-',
+  result: 4
+  },
+];
 
 
 // Here's a wonderful place to make some routes:
 
 // GET /calculations
 
-function getCalculations(event) {
-  console.log("In getCalculations function...");
-  axios
-    .get("/calculations")
-    .then((response) => {
-      console.log(
-        "got data from calculations"
-      );
+// function getCalculations(event) {
+//   console.log("In getCalculations function...");
+//   axios
+//     .get("/calculations")
+//     .then((response) => {
+//       console.log(
+//         "got data from calculations"
+//       );
       
-    })
-}
+//     })
+// }
+
+
+app.get('', (req, res) => {
+  res.send(calculations);
+});
 
 // POST /calculations
 
+// axios.post('/client.js', calculations)
+//   .then(function (response) {
+//     console.log(this.response.calculations);
+//   })
+//   .catch(function (error) {
+//     console.error(error);
+//   });    Why is the above causing my whole server to not work?
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
 // 🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸
